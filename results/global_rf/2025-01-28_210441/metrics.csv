@@ -1,0 +1,19 @@
+generation_accuracy,selection_accuracy,selection_precision,selection_recall,selection_f1,selection_tp,selection_tn,selection_fp,selection_fn,train_percentage,model
+0.9526240526240526,0.1357142857142857,0.1357142857142857,0.1357142857142857,0.1357142857142857,19,100,121,21,0.001,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9644733044733045,0.17857142857142858,0.17857142857142858,0.17857142857142858,0.17857142857142858,25,100,115,15,0.01,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9754047619047619,0.17142857142857143,0.17142857142857143,0.17142857142857143,0.17142857142857143,24,100,116,16,0.1,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9750612244897959,0.17857142857142858,0.17857142857142858,0.17857142857142858,0.17857142857142858,25,104,115,11,0.3,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9753857142857143,0.17142857142857143,0.17142857142857143,0.17142857142857143,0.17142857142857143,24,105,116,11,0.5,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9761190476190477,0.17142857142857143,0.17142857142857143,0.17142857142857143,0.17142857142857143,24,108,116,8,0.7,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
