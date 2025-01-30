@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Tuple, Optional, Any
 import pandas as pd
 import numpy as np
+
 from utils.setup import setup_experiment_dir
 
 
@@ -69,11 +70,10 @@ class BaseModelTrainer(ABC):
             total_predictions += len(prob_pred)
             total_correct_predictions += correct_predictions
 
-            selected_idx = np.argmax(prob_proba)
             prob_labels = prob_df['is_correct'].values
 
             metrics_per_problem.append(self._calculate_selection_metrics(
-                prob_labels, selected_idx))
+                prob_labels, prob_proba))
 
         return self._aggregate_metrics(metrics_per_problem,
                                        total_correct_predictions,
@@ -85,10 +85,9 @@ class BaseModelTrainer(ABC):
         """Calculate metrics for local model (single problem)."""
         generation_accuracy = (y_pred == df_test['is_correct']).mean()
 
-        selected_idx = np.argmax(y_pred_proba)
         prob_labels = df_test['is_correct'].values
 
-        metrics = self._calculate_selection_metrics(prob_labels, selected_idx)
+        metrics = self._calculate_selection_metrics(prob_labels, y_pred_proba)
         metrics.update({
             'problem_idx': df_test['problem_idx'].iloc[0],
             'generation_accuracy': generation_accuracy
@@ -98,8 +97,10 @@ class BaseModelTrainer(ABC):
 
     @staticmethod
     def _calculate_selection_metrics(prob_labels: np.ndarray,
-                                     selected_idx: int) -> Dict:
+                                     prob_scores: np.ndarray,
+                                     k_values: List[int] = [1, 10, 25]) -> Dict:
         """Calculate selection metrics for a single problem."""
+        selected_idx = np.argmax(prob_scores)
         tp = 1 if prob_labels[selected_idx] else 0
         fp = 1 if not prob_labels[selected_idx] else 0
         fn = 1 if sum(prob_labels) > 0 and not prob_labels[selected_idx] else 0
@@ -109,7 +110,7 @@ class BaseModelTrainer(ABC):
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0
 
-        return {
+        metrics = {
             'selection_accuracy': tp,
             'selection_precision': precision,
             'selection_recall': recall,
@@ -121,12 +122,22 @@ class BaseModelTrainer(ABC):
             'selection_fn': fn
         }
 
+        sorted_indices = np.argsort(prob_scores)[::-1]
+        for k in k_values[1:]:  # skip k=1 since it's same as selection accuracy
+            top_k_indices = sorted_indices[:k]
+            metrics[f'selection@{k}'] = float(
+                np.any(prob_labels[top_k_indices]))
+
+        return metrics
+
     @staticmethod
     def _aggregate_metrics(metrics_per_problem: List[Dict],
                            total_correct: int,
                            total_predictions: int) -> Dict:
         """Aggregate metrics across problems."""
-        n_problems = len(metrics_per_problem)
+
+        all_keys = set().union(*metrics_per_problem)
+        selection_k_keys = [k for k in all_keys if k.startswith('selection@')]
 
         aggregated = {
             'generation_accuracy': total_correct / total_predictions,
@@ -139,5 +150,8 @@ class BaseModelTrainer(ABC):
             'selection_fp': sum(m['selection_fp'] for m in metrics_per_problem),
             'selection_fn': sum(m['selection_fn'] for m in metrics_per_problem)
         }
+
+        for k in selection_k_keys:
+            aggregated[k] = np.mean([m[k] for m in metrics_per_problem])
 
         return aggregated

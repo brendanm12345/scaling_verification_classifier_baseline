@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 import numpy as np
 from joblib import Parallel, delayed
+
 from models.base import BaseModelTrainer
 
 
@@ -33,10 +34,21 @@ def train_global_model(trainer: BaseModelTrainer,
     df_test = df[~train_mask]
 
     model = trainer.train_model(X_train, y_train)
-    y_pred, y_pred_proba = trainer.predict(model, X_test)
+    y_train_pred, y_train_proba = trainer.predict(model, X_train)
+    train_metrics = trainer.calculate_metrics(
+        df[train_mask], y_train_pred, y_train_proba)
 
-    metrics = trainer.calculate_metrics(df_test, y_pred, y_pred_proba,
-                                        model, feature_columns)
+    # Calculate metrics on test set
+    y_test_pred, y_test_proba = trainer.predict(model, X_test)
+    test_metrics = trainer.calculate_metrics(
+        df_test, y_test_pred, y_test_proba)
+
+    # Combine metrics
+    metrics = {
+        'train_' + k: v for k, v in train_metrics.items()
+    }
+    metrics.update(test_metrics)
+
     metrics['train_percentage'] = train_percentage
     metrics['model'] = model
 
@@ -74,14 +86,8 @@ def train_local_model(trainer: BaseModelTrainer,
         metrics['insufficient_data'] = True
         return metrics
 
-    # Determine appropriate number of splits based on data size
-    min_class_size = min(sum(y == 0), sum(y == 1))
-    n_splits = min(
-        max(2, int(np.ceil(1/train_percentage))),
-        min_class_size  # Limited by smallest class size
-    )
-
-    skf = StratifiedKFold(n_splits=n_splits,
+    # Train model on sufficient data (n_splits cannot be lower than 2)
+    skf = StratifiedKFold(n_splits=max(2, int(np.ceil(1/train_percentage))),
                           shuffle=True, random_state=42)
     train_idx, test_idx = next(skf.split(X, y))
 

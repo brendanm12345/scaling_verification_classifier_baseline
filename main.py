@@ -2,7 +2,6 @@ import argparse
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-from typing import List, Dict
 
 from data_processing import prepare_data
 from models.mlp import MLPTrainer

@@ -2,7 +2,8 @@ from typing import Any, Tuple, Dict
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from .base import BaseModelTrainer
+
+from models.base import BaseModelTrainer
 
 
 class RFTrainer(BaseModelTrainer):
