@@ -9,7 +9,7 @@ from utils.setup import setup_experiment_dir
 class BaseModelTrainer(ABC):
     """Base class for all model trainers."""
 
-    def __init__(self, model_type: str, training_mode: str):
+    def __init__(self, model_type: str, training_mode: str, dataset: str):
         """Initialize the model trainer
         Args:
             model_type: type of model ('mlp' or 'rf')
@@ -17,7 +17,9 @@ class BaseModelTrainer(ABC):
         """
         self.model_type = model_type
         self.training_mode = training_mode
-        self.exp_dir = setup_experiment_dir(f"{training_mode}_{model_type}")
+        self.dataset = dataset
+        self.exp_dir = setup_experiment_dir(
+            self.dataset, f"{training_mode}_{model_type}")
 
     @abstractmethod
     def train_model(self, X_train: pd.DataFrame, y_train: pd.Series) -> Any:

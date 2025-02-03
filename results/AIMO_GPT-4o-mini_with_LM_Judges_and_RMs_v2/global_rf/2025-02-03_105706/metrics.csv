@@ -1,0 +1,13 @@
+train_generation_accuracy,train_selection_accuracy,train_selection_precision,train_selection_recall,train_selection_f1,train_selection_tp,train_selection_tn,train_selection_fp,train_selection_fn,train_selection@25,train_selection@10,generation_accuracy,selection_accuracy,selection_precision,selection_recall,selection_f1,selection_tp,selection_tn,selection_fp,selection_fn,selection@25,selection@10,train_percentage,model
+0.9944444444444445,0.2,0.2,0.2,0.2,18,72,72,0,0.2,0.2,0.9450617283950618,0.15555555555555556,0.15555555555555556,0.15555555555555556,0.15555555555555556,14,62,76,14,0.2777777777777778,0.24444444444444444,0.1,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9874074074074074,0.25555555555555554,0.25555555555555554,0.25555555555555554,0.25555555555555554,23,67,67,0,0.25555555555555554,0.25555555555555554,0.9482539682539682,0.18888888888888888,0.18888888888888888,0.18888888888888888,0.18888888888888888,17,62,73,11,0.2777777777777778,0.24444444444444444,0.3,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9806666666666667,0.25555555555555554,0.25555555555555554,0.25555555555555554,0.25555555555555554,23,66,67,1,0.26666666666666666,0.26666666666666666,0.9515555555555556,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,15,63,75,12,0.28888888888888886,0.24444444444444444,0.5,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"
+0.9780952380952381,0.25555555555555554,0.25555555555555554,0.25555555555555554,0.25555555555555554,23,64,67,3,0.28888888888888886,0.28888888888888886,0.9518518518518518,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,15,68,75,7,0.23333333333333334,0.2222222222222222,0.7,"RandomForestClassifier(class_weight='balanced', max_depth=10,
+                       min_samples_leaf=5, min_samples_split=10,
+                       n_estimators=200, n_jobs=-1, random_state=42)"

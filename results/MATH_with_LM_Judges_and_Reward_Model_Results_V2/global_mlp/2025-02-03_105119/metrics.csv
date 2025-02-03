@@ -1,0 +1,7 @@
+train_generation_accuracy,train_selection_accuracy,train_selection_precision,train_selection_recall,train_selection_f1,train_selection_tp,train_selection_tn,train_selection_fp,train_selection_fn,train_selection@10,train_selection@25,generation_accuracy,selection_accuracy,selection_precision,selection_recall,selection_f1,selection_tp,selection_tn,selection_fp,selection_fn,selection@10,selection@25,train_percentage,model
+1.0,0.42,0.42,0.42,0.42,42,58,58,0,0.42,0.42,0.7357957957957958,0.5,0.5,0.5,0.5,50,1,50,49,0.79,0.9,0.001,"MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42)"
+0.899,0.75,0.75,0.75,0.75,75,21,25,4,0.79,0.79,0.7672929292929292,0.56,0.56,0.56,0.56,56,1,44,43,0.81,0.86,0.01,"MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42)"
+0.8862,0.79,0.79,0.79,0.79,79,2,21,19,0.92,0.93,0.8067333333333333,0.57,0.57,0.57,0.57,57,2,43,41,0.82,0.88,0.1,"MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42)"
+0.9087666666666666,0.8,0.8,0.8,0.8,80,2,20,18,0.94,0.97,0.8264142857142858,0.56,0.56,0.56,0.56,56,2,44,42,0.85,0.92,0.3,"MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42)"
+0.90012,0.82,0.82,0.82,0.82,82,2,18,16,0.94,0.96,0.8405,0.64,0.64,0.64,0.64,64,2,36,34,0.85,0.91,0.5,"MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42)"
+0.8989714285714285,0.77,0.77,0.77,0.77,77,1,23,22,0.95,0.95,0.8489333333333333,0.64,0.64,0.64,0.64,64,3,36,33,0.87,0.89,0.7,"MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=42)"

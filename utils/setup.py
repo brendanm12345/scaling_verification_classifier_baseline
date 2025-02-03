@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 
 
-def setup_experiment_dir(experiment_type: str) -> str:
+def setup_experiment_dir(dataset: str, experiment_type: str) -> str:
     """
     Create and return path to timestamped experiment directory.
 
@@ -13,7 +13,8 @@ def setup_experiment_dir(experiment_type: str) -> str:
         Path to experiment directory
     """
     # Create base results directory if it doesn't exist
-    base_dir = os.path.join('results', experiment_type)
+    dataset = dataset.replace('hazyresearch/', '')
+    base_dir = os.path.join('results', dataset, experiment_type)
     os.makedirs(base_dir, exist_ok=True)
 
     # Create timestamped directory for this run

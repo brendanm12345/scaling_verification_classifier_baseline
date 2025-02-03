@@ -9,14 +9,15 @@ from models.base import BaseModelTrainer
 class RFTrainer(BaseModelTrainer):
     """Random Forest model trainer implementation."""
 
-    def __init__(self, training_mode: str):
+    def __init__(self, training_mode: str, dataset: str):
         """
         Initialize RF trainer.
 
         Args:
             training_mode: 'global' or 'local'
+            dataset: name of dataset
         """
-        super().__init__('rf', training_mode)
+        super().__init__('rf', training_mode, dataset)
 
         # Set different hyperparameters for global vs local
         if training_mode == 'global':

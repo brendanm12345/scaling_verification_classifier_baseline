@@ -1,0 +1,5 @@
+generation_accuracy,selection_accuracy,selection_precision,selection_recall,selection_f1,selection_tp,selection_tn,selection_fp,selection_fn,total_problems,insufficient_data_problems,train_percentage
+0.9341500000000003,0.77,0.77,0.77,0.77,77,4,23,19,100,4,0.1
+0.92923,0.82,0.82,0.82,0.82,82,1,18,17,100,4,0.3
+0.9261699999999999,0.76,0.76,0.76,0.76,76,1,24,23,100,4,0.5
+0.9261699999999999,0.76,0.76,0.76,0.76,76,1,24,23,100,4,0.7

@@ -7,10 +7,16 @@ from models.base import BaseModelTrainer
 
 
 class MLPTrainer(BaseModelTrainer):
-    """MLP model trainer"""
+    """
+    Initialize MLP trainer.
 
-    def __init__(self, training_mode: str):
-        super().__init__('mlp', training_mode)
+    Args:
+        training_mode: 'global' or 'local'
+        dataset: name of dataset
+    """
+
+    def __init__(self, training_mode: str, dataset: str):
+        super().__init__('mlp', training_mode, dataset)
 
         if training_mode == 'global':
             self.hidden_layer_sizes = (100, 50)

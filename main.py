@@ -74,9 +74,9 @@ def main():
 
     # Init trainer
     if args.model_type == 'mlp':
-        trainer = MLPTrainer(args.training_mode)
+        trainer = MLPTrainer(args.training_mode, args.dataset)
     else:
-        trainer = RFTrainer(args.training_mode)
+        trainer = RFTrainer(args.training_mode, args.dataset)
 
     # Train models for each split
     results = []
